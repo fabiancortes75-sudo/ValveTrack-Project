@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ValveTrack | Gestión de Mantenimiento</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <div id="loader">
+        <div class="spinner"></div>
+    </div>
+
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="logo">
+                <i data-lucide="shield" class="logo-icon"></i>
+                <span class="logo-text">ValveTrack</span>
+            </div>
+
+            <div class="asset-type-section">
+                <div class="section-label">Tipo de Activo</div>
+                <div class="type-grid">
+                    <button class="type-btn active" data-type="PSV">PSV</button>
+                    <button class="type-btn" data-type="VPV">VPV</button>
+                    <button class="type-btn" data-type="FSV">FSV</button>
+                </div>
+            </div>
+
+            <nav class="nav-menu">
+                <button class="nav-item active" data-view="dashboard">
+                    <i data-lucide="layout-dashboard"></i> <span>Dashboard</span>
+                </button>
+                <button class="nav-item" data-view="inventory">
+                    <i data-lucide="database"></i> <span>Inventario</span>
+                </button>
+                <button class="nav-item" data-view="alerts">
+                    <i data-lucide="alert-triangle"></i> <span>Alertas</span>
+                    <span id="alert-count" class="badge"></span>
+                </button>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-header">
+                <div class="view-title">
+                    <h1 id="page-title">Dashboard</h1>
+                    <p id="page-subtitle">Monitoreo de estado de válvulas PSV</p>
+                </div>
+                <div class="header-actions">
+                    <div class="search-box">
+                        <i data-lucide="search"></i>
+                        <input type="text" id="global-search" placeholder="Buscar válvula...">
+                    </div>
+                </div>
+            </header>
+
+            <div id="view-container">
+                <!-- Content will be injected here -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Edit Modal -->
+    <div id="modal-overlay" class="modal-overlay hidden">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h2>Editar Válvula</h2>
+                <button id="close-modal-btn" class="close-btn"><i data-lucide="x"></i></button>
+            </div>
+            <form id="edit-form">
+                <div class="form-group">
+                    <label>ID ERP</label>
+                    <input type="text" id="edit-erp-id" disabled>
+                </div>
+                <div class="form-group">
+                    <label>Equipo</label>
+                    <input type="text" id="edit-equipment" disabled>
+                </div>
+                <div class="form-group">
+                    <label>Estado Cumplimiento</label>
+                    <select id="edit-state" required>
+                        <option value="VIGENTE">VIGENTE</option>
+                        <option value="VENCIDO">VENCIDO</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Próxima Calibración</label>
+                    <input type="date" id="edit-date" required>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="submit-btn">Guardar Cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
